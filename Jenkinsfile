@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage('Checkout') {
-            steps { git 'https://github.com/maneesha341/portfolio-website.git' }
+            steps { git branch: 'main', url: 'https://github.com/maneesha341/portfolio-website.git' }
         }
         stage('Build') {
             steps { sh 'npm install' }
