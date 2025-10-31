@@ -5,12 +5,12 @@ pipeline {
         nodejs 'Node_22'
     }
 
-    environment {
-        // Add Docker and Kubernetes credentials or configs if needed
-        // DOCKER_USERNAME = credentials('docker-username-id')
-        // DOCKER_PASSWORD = credentials('docker-password-id')
-        // KUBE_CONFIG = credentials('kubeconfig-id')
-    }
+    // Remove this block if no environment variables
+    // environment {
+    //     // Example:
+    //     // DOCKER_USERNAME = credentials('docker-username-id')
+    //     // DOCKER_PASSWORD = credentials('docker-password-id')
+    // }
 
     stages {
         stage('Build') {
@@ -35,9 +35,6 @@ pipeline {
             steps {
                 dir('portfolio-website') {
                     bat 'docker build -t my-portfolio:latest .'
-                    // If pushing to registry, include login commands:
-                    // bat 'docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%'
-                    // bat 'docker push my-portfolio:latest'
                     bat 'docker images'
                 }
             }
@@ -45,7 +42,6 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                // Ensure kubectl is configured/accessed properly
                 bat 'kubectl apply -f k8s-deployment.yaml'
             }
         }
