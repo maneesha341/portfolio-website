@@ -5,13 +5,6 @@ pipeline {
         nodejs 'Node_22'
     }
 
-    // Remove this block if no environment variables
-    // environment {
-    //     // Example:
-    //     // DOCKER_USERNAME = credentials('docker-username-id')
-    //     // DOCKER_PASSWORD = credentials('docker-password-id')
-    // }
-
     stages {
         stage('Build') {
             steps {
